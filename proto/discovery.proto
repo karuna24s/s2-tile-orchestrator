@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package discovery.v1;
+
+/**
+ * 🛰️ ARCHITECTURAL CONTEXT: Geospatial Data Integrity
+ * Repository: github.com/karuna24s/s2-tile-orchestrator
+ * * This schema serves as the "Source of Truth" between the Go
+ * infrastructure and the TypeScript Viewport.
+ * * 1. Compact: Protobuf reduces payload size by ~80% vs JSON,
+ * minimizing the "Data Tax" for mobile users.
+ * 2. Deterministic: Prevents coordinate drift via strict typing.
+ */
+
+// --- GEOMETRY ---
+
+message Coordinate {
+  // Use double for 64-bit floating point precision
+  double latitude = 1;
+  double longitude = 2;
+}
+
+// --- DISCOVERY API ---
+
+message TileRequest {
+  Coordinate center = 1;
+  uint32 zoom_level = 2;
+  // Request metadata for audit logging and performance tracking
+  string request_id = 3;
+}
+
+message MapTile {
+  // 64-bit S2 Cell ID for sharding and spatial locality
+  uint64 cell_id = 1;
+  // Compressed binary geometry (e.g., Draco mesh or PBF textures)
+  bytes mesh_data = 2;
+  // Number of active Points of Interest (POI) in this specific tile
+  uint32 poi_count = 3;
+}
+
+message TileResponse {
+  // A collection of tiles covering the requested viewport
+  repeated MapTile tiles = 1;
+  // Response latency in milliseconds for system health observability
+  int64 server_latency_ms = 2;
+}
