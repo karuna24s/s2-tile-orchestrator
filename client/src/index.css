@@ -1,0 +1,80 @@
+/**
+ * 🎨 TAILWIND v4: ENGINE-INTEGRATED STYLES
+ * Role: Premium UI Invariants
+ * Narrative: "I treat the UI as the final layer of data integrity.
+ * High-fidelity styling reduces cognitive friction for the user."
+ */
+
+ @import "tailwindcss";
+
+ /* In v4, customization happens via CSS variables in the @theme block. */
+ @theme {
+   --color-brand-blue: #3b82f6;
+   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+   --radius-3xl: 1.5rem;
+
+   /* Custom Animations for Infrastructure Signals */
+   --animate-subtle-pulse: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+ }
+
+ :root {
+   font-family: var(--font-sans);
+   line-height: 1.5;
+   font-weight: 400;
+   color-scheme: dark;
+   background-color: #020617; /* slate-950 */
+   color: #f8fafc; /* slate-50 */
+
+   /* Text Selection Invariant */
+   ::selection {
+     background-color: rgba(59, 130, 246, 0.3); /* Brand Blue */
+     color: #ffffff;
+   }
+
+   /* Staff-level Font Smoothing */
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+ }
+
+ body {
+   margin: 0;
+   min-width: 320px;
+   min-height: 100vh;
+   overflow-x: hidden;
+ }
+
+ /* 🧭 Premium Scrollbar for Discovery Stream
+    Narrative: "I optimize the scrollbar to be unobtrusive,
+    preserving the focus on the data stream."
+ */
+ .scrollbar-thin {
+   scrollbar-width: thin;
+   scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+ }
+
+ .scrollbar-thin::-webkit-scrollbar {
+   width: 5px;
+ }
+
+ .scrollbar-thin::-webkit-scrollbar-track {
+   background: transparent;
+ }
+
+ .scrollbar-thin::-webkit-scrollbar-thumb {
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 20px;
+   border: 1px solid transparent;
+   background-clip: content-box;
+ }
+
+ .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+   background: rgba(59, 130, 246, 0.4); /* Brand Blue Glow on hover */
+ }
+
+ /* Viewport Grid Depth */
+ .viewport-grid-bg {
+   background-image:
+     linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+     linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+   background-size: 40px 40px;
+ }
